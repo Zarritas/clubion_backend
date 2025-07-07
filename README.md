@@ -82,7 +82,7 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 📞 Contacto
 
-Si tienes dudas o quieres colaborar, puedes contactarme vía GitHub o por email: jlorenzolimon@gmail.com
+Si tienes dudas o quieres colaborar, puedes contactarme vía GitHub o por email: <mailto:jlorenzolimon@gmail.com>
 
 ---
 
