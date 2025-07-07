@@ -48,7 +48,7 @@ docker-compose up -d
 Esto levantará los servicios de Odoo y PostgreSQL.
 Acceder a Odoo
 
-Abre tu navegador en http://localhost:8069 y sigue la configuración inicial.
+Abre tu navegador en <http://localhost:8069> y sigue la configuración inicial.
 
 ### 🧪 Desarrollo
 
