@@ -34,15 +34,14 @@ Este repositorio contiene el backend desarrollado sobre **Odoo Community Edition
 
 ### Clonar el repositorio
 
-```
-bash
+```bash
 git clone https://github.com/Zarritas/clubion_backend.git
 cd clubion_backend
 ```
 
 ### Levantar el entorno con Docker
 
-```
+```bash
 docker-compose up -d
 ```
 
@@ -56,7 +55,7 @@ Abre tu navegador en http://localhost:8069 y sigue la configuración inicial.
 - Para instalar módulos personalizados, ponlos dentro de la carpeta addons
 
 - Usa el comando Odoo shell para desarrollo y debugging:
-```
+```bash
 docker exec -it clubion_backend_odoo_1 /bin/bash
 odoo shell -d your_database
 ```
