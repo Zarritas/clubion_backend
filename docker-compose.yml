@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  odoo:
+    image: ghcr.io/zarritas/odoo16-ocb:latest
+    ports:
+      - 8069:8069
+    volumes:
+      - ./custom_addons:/opt/odoo/custom_addons
+      - ./queue:/opt/odoo/queue
+      - ./environment/odoo.conf:/etc/odoo.conf
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+volumes:
+  odoo-db-data:
+
+networks:
+  clubion_backend_network:
