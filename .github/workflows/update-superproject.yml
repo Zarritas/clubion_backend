@@ -41,6 +41,6 @@ jobs:
           git checkout $GITHUB_SHA
           cd ..
 
-          git add modulo
+          git add clubion_backend
           git commit -m "chore: update submodule to $GITHUB_SHA"
           git push
