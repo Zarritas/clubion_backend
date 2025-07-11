@@ -25,7 +25,7 @@ jobs:
           app_id: ${{ secrets.GH_APP_ID }}
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           installation_retrieval_mode: repository
-          installation_retrieval_payload: Zarras/Clubion
+          installation_retrieval_payload: Zarritas/Clubion
 
       - name: Clone superproject and update submodule
         run: |
