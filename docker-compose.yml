@@ -10,7 +10,10 @@ services:
       - ./queue:/opt/odoo/queue
       - ./environment/odoo.conf:/etc/odoo.conf
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    networks:
+      - clubion_backend_network
   db:
     image: postgres:15
     environment:
@@ -19,7 +22,14 @@ services:
       POSTGRES_DB: odoo
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
-
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - clubion_backend_network
+      
 volumes:
   odoo-db-data:
 
