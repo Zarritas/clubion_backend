@@ -1,0 +1,31 @@
+name: Update Submodule in Main Repo
+
+on:
+  push:
+    branches:
+      - main  # o cualquier rama objetivo del merge
+
+jobs:
+  update-superproject:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout submodule repo (this repo)
+        uses: actions/checkout@v4
+
+      - name: Clone superproject repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@zarritas.noreply.github.com"
+          git clone https://github.com/Zarritas/Clubion.git
+          cd Clubion
+
+          git submodule update --init --recursive
+          cd clubion_backend  # la carpeta del submódulo
+          git fetch
+          git checkout $GITHUB_SHA  # actualizamos el submódulo al commit que activó esta acción
+          cd ..
+
+          git add clubion_backend
+          git commit -m "chore: update submodule to $GITHUB_SHA"
+          git push
