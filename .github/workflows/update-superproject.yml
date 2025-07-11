@@ -32,11 +32,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/Zarritas/repo-principal.git
-          cd repo-principal
+          git clone https://github.com/Zarritas/Clubion.git
+          cd Clubion
 
           git submodule update --init --recursive
-          cd modulo
+          cd clubion_backend
           git fetch
           git checkout $GITHUB_SHA
           cd ..
