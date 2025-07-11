@@ -1,31 +1,45 @@
-name: Update Submodule in Main Repo
+name: Update Superproject Submodule
 
 on:
   push:
     branches:
-      - main  # o cualquier rama objetivo del merge
+      - main
 
 jobs:
   update-superproject:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout submodule repo (this repo)
+      - name: Checkout this repo
         uses: actions/checkout@v4
 
-      - name: Clone superproject repo
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Generate GitHub App Installation Token
+        id: generate_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          installation_id: ${{ secrets.GH_APP_INSTALLATION_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Clone superproject and update submodule
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@zarritas.noreply.github.com"
-          git clone https://github.com/Zarritas/Clubion.git
-          cd Clubion
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/Zarritas/repo-principal.git
+          cd repo-principal
 
           git submodule update --init --recursive
-          cd clubion_backend  # la carpeta del submódulo
+          cd modulo
           git fetch
-          git checkout $GITHUB_SHA  # actualizamos el submódulo al commit que activó esta acción
+          git checkout $GITHUB_SHA
           cd ..
 
-          git add clubion_backend
+          git add modulo
           git commit -m "chore: update submodule to $GITHUB_SHA"
           git push
