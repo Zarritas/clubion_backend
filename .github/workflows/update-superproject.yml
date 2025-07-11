@@ -32,7 +32,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git clone https://x-access-token:${{ steps.generate_token.outputs.token }}github.com/Zarritas/Clubion.git
+          git clone https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/Zarritas/Clubion.git
           cd Clubion
 
           git submodule update --init --recursive
